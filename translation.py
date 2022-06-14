@@ -1,5 +1,5 @@
 class Translation(object):
-    START_TEXT = """Hi {},
+    START_TEXT = """Hi🖖 {},
 I'm X-URL-Uploader!
 You can upload HTTP/HTTPS direct link, Using this bot!
 
@@ -26,9 +26,20 @@ URL | filename | username | password"""
    Video  - Give File as video without Screenshots
    File   - Give File without Screenshots
 
-If bot didn't respond, contact @xgorn"""
+If bot didn't respond, contact @shado_hackers"""
     REPLY_TO_MEDIA_ALBUM_TO_GEN_THUMB = "Reply /genthumbnail to a media album, to generate custom thumbnail"
     ERR_ONLY_TWO_MEDIA_IN_ALBUM = "Media Album should contain only two photos. Please re-send the media album, and then try again, or send only two photos in an album."
     CANCEL_STR = "Process Cancelled"
     ZIP_UPLOADED_STR = "Uploaded {} files in {} seconds"
     SLOW_URL_DECED = "Gosh that seems to be a very slow URL. Since you were screwing my home, I am in no mood to download this file. Meanwhile, why don't you try this:==> https://shrtz.me/PtsVnf6 and get me a fast URL so that I can upload to Telegram, without me slowing down for other users."
+ 
+ABOUT = """
+**About This Bot** 
+Bot created by @shado_hacker
+My name is 📨:@URLX_bot
+Hosted🗃️ : Heroku
+Leech 🌡️: [@nexleech]
+Language ✨: Python
+Support⚡:  [@OMG INFO]
+Developer👨‍💻 : @shado_hackers
+Create on🗓️ : 10/06/2022 """
