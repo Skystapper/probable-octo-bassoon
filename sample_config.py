@@ -34,3 +34,5 @@ class Config(object):
     DATABASE_URL = os.environ.get("DATABASE_URL", "")
 # your telegram id
     OWNER_ID = int(os.environ.get("OWNER_ID", ""))
+    # Log Channel ID
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", ""))
