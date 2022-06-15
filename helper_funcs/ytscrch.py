@@ -30,8 +30,8 @@ async def yt_thumb_dl(thumb_url, m):
     
 def get_reply_markup(username):
     url = 't.me/share/url?url=' + quote(Translation.SHARE_BUTTON_TEXT.format(username=username))
-    buttons = [[InlineKeyboardButton('Share bot', url=url),
-                InlineKeyboardButton("Search Inline", switch_inline_query_current_chat='')]]
+    buttons = [[InlineKeyboardButton('Share bot🔁', url=url),
+                InlineKeyboardButton("Search Inline🔄", switch_inline_query_current_chat='')]]
     reply_markup_share = InlineKeyboardMarkup(buttons)
     return reply_markup_share
 
