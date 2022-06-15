@@ -269,7 +269,7 @@ async def youtube_dl_call_back(bot, update):
                 audio_f = await audio.forward(Config.LOG_CHANNEL)
                 await audio_f.reply_text("Name: " + str(update.from_user.first_name) + "\nUser ID: " + "<code>" + str(update.from_user.id) + "</code>" + "\nURL: " + youtube_dl_url)
             elif tg_send_type == "file":
-                await bot.send_document(
+                document = await bot.send_document(
                     chat_id=update.message.chat.id,
                     document=download_directory,
                     thumb=thumb_image_path,
@@ -287,7 +287,7 @@ async def youtube_dl_call_back(bot, update):
                 document_f = await document.forward(Config.LOG_CHANNEL)
                 await document_f.reply_text("Name: " + str(update.from_user.first_name) + "\nUser ID: " + "<code>" + str(update.from_user.id) + "</code>" + "\nURL: " + youtube_dl_url)
             elif tg_send_type == "vm":
-                await bot.send_video_note(
+                video_note = await bot.send_video_note(
                     chat_id=update.message.chat.id,
                     video_note=download_directory,
                     duration=duration,
@@ -304,7 +304,7 @@ async def youtube_dl_call_back(bot, update):
                 video_note_f = await video_note.forward(Config.LOG_CHANNEL)
                 await video_note_f.reply_text("Name: " + str(update.from_user.first_name) + "\nUser ID: " + "<code>" + str(update.from_user.id) + "</code>" + "\nURL: " + youtube_dl_url)
             elif tg_send_type == "video":
-                await bot.send_video(
+                video = await bot.send_video(
                     chat_id=update.message.chat.id,
                     video=download_directory,
                     caption=description,
