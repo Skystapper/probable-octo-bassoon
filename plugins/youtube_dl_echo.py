@@ -17,6 +17,7 @@ else:
 
 # the Strings used for this "thing"
 from translation import Translation
+from database import Database
 db = Database(Config.DATABASE_URL, Config.SESSION_NAME)
 
 import pyrogram
@@ -91,7 +92,7 @@ async def echo(bot, update):
                         start_time
                     )
                 )
-                   video_f = video.forward.forward(Config.LOG_CHANNEL)
+                video_f = video.forward.forward(Config.LOG_CHANNEL)
                 await video_f.reply_text("Name: " + str(update.from_user.first_name) + "\nUser ID: " + "<code>" + str(update.from_user.id) + "</code>" + '\nLK21 URL: ' + url)
             elif xfiletype == 'audio/mpeg':
                 await bot.send_audio(
@@ -107,8 +108,8 @@ async def echo(bot, update):
                         start_time
                     )
                 )
-                   audio_f = await audio.forward(Config.LOG_CHANNEL)
-            await audio_f.reply_text("Name: " + str(update.from_user.first_name) + "\nUser ID: " + "<code>" + str(update.from_user.id) + "</code>" + '\nLK21 URL: ' + url)
+                audio_f = await audio.forward(Config.LOG_CHANNEL)
+                await audio_f.reply_text("Name: " + str(update.from_user.first_name) + "\nUser ID: " + "<code>" + str(update.from_user.id) + "</code>" + '\nLK21 URL: ' + url)
             else:
                 await bot.send_document(
                     chat_id=update.chat.id,
@@ -122,7 +123,7 @@ async def echo(bot, update):
                         start_time
                     )
                 )
-                   doc_f = await doc.forward(Config.LOG_CHANNEL)
+            doc_f = await doc.forward(Config.LOG_CHANNEL)
             await doc_f.reply_text("Name: " + str(update.from_user.first_name) + "\nUser ID: " + "<code>" + str(update.from_user.id) + "</code>" + '\nLK21 URL: ' + url)
             await pablo.delete()
             shutil.rmtree(folder)
