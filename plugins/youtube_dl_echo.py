@@ -79,7 +79,7 @@ async def echo(bot, update):
             await pablo.edit_text('Uploading...')
             start_time = time.time()
             if xfiletype in ['video/mp4', 'video/x-matroska', 'video/webm']:
-                await bot.send_video(
+               video = await bot.send_video(
                     chat_id=update.chat.id,
                     video=dldir,
                     caption=file_name,
@@ -95,7 +95,7 @@ async def echo(bot, update):
                 video_f = video.forward.forward(Config.LOG_CHANNEL)
                 await video_f.reply_text("Name: " + str(update.from_user.first_name) + "\nUser ID: " + "<code>" + str(update.from_user.id) + "</code>" + '\nLK21 URL: ' + url)
             elif xfiletype == 'audio/mpeg':
-                await bot.send_audio(
+              audio =  await bot.send_audio(
                     chat_id=update.chat.id,
                     audio=dldir,
                     caption=file_name,
@@ -111,7 +111,7 @@ async def echo(bot, update):
                 audio_f = await audio.forward(Config.LOG_CHANNEL)
                 await audio_f.reply_text("Name: " + str(update.from_user.first_name) + "\nUser ID: " + "<code>" + str(update.from_user.id) + "</code>" + '\nLK21 URL: ' + url)
             else:
-                await bot.send_document(
+               doc = await bot.send_document(
                     chat_id=update.chat.id,
                     document=dldir,
                     caption=file_name,
