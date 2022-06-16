@@ -14,22 +14,14 @@ from pyrogram import __version__ as z
 from datetime import datetime
 from platform import python_version, uname
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from telegram import Update, Bot, Message, Chat, ParseMode
 from pyrogram import filters
 from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
-from telegram.ext import  CallbackContext, CallbackQueryHandler, Filters
-from telegram.ext.dispatcher import run_async
-
-from telegram.error import BadRequest, Unauthorized
-
+from pyrogram import Client
 
 @Client.on_message(filters.command("sysinfo"))
-async def status(update: Update, context: CallbackContext):
-    message = update.effective_message
-    chat = update.effective_chat
-    query = update.callback_query
-
+async def status(client, message):
+    cmd = message.command
     msg = "*Bot information*\n"
     msg += f"Pyrogram Version: `{z}`\n"
     msg += f"Python: `{python_version()}`\n"
