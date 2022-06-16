@@ -13,12 +13,12 @@ import pyrogram
 from pyrogram import __version__ as z
 from datetime import datetime
 from platform import python_version, uname
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, 
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram import Update, Bot, Message, Chat, ParseMode
 from pyrogram import filters
 from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
-from telegram.ext import CommandHandler, CallbackContext, CallbackQueryHandler, Filters
+from telegram.ext import  CallbackContext, CallbackQueryHandler, Filters
 from telegram.ext.dispatcher import run_async
 
 from telegram.error import BadRequest, Unauthorized
