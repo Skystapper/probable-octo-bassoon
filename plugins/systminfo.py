@@ -18,7 +18,8 @@ from telegram import Update, Bot, Message, Chat, ParseMode
 from pyrogram import filters
 from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
-
+from telegram.ext import CommandHandler, CallbackContext, CallbackQueryHandler, Filters
+from telegram.ext.dispatcher import run_async
 
 from telegram.error import BadRequest, Unauthorized
 
