@@ -18,3 +18,4 @@ pyromod
 youtube-search-python
 wget
 psutil
+telegram
