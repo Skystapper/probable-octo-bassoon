@@ -10,7 +10,8 @@ logger = logging.getLogger(__name__)
 
 import os
 import sqlite3
-
+from database.database.access_db import db
+from database.database.add_user import AddUserToDatabase
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
     from sample_config import Config
@@ -43,6 +44,8 @@ async def help_user(bot, update):
 async def start(bot, update):
     if update.from_user.id in Config.AUTH_USERS:
         # logger.info(update)
+       await AddUserToDatabase(bot, m)
+    try:
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.START_TEXT.format(update.from_user.first_name),
