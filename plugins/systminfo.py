@@ -2,7 +2,7 @@ import subprocess
 import time
 import os
 import requests
-import speedtest
+
 import json
 import sys
 import traceback
