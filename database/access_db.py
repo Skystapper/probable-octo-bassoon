@@ -1,6 +1,10 @@
 # (c) @AbirHasan2005
 
-from configs import Config
-from helpers.database.database import Database
+if bool(os.environ.get("WEBHOOK", False)):
+    from sample_config import Config
+else:
+    from config import Config
 
-db = Database(Config.MONGODB_URI, Config.SESSION_NAME)
+from database.database import Database
+
+db = Database(Config.DATABASE_URL, Config.SESSION_NAME)
