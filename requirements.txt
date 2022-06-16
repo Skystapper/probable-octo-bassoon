@@ -17,3 +17,4 @@ dnspython
 pyromod
 youtube-search-python
 wget
+psutil
