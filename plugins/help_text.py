@@ -53,11 +53,11 @@ async def start(bot, update):
                 [
                     [
                         InlineKeyboardButton(
-                            "Source", url="https://github.com/X-Gorn/X-URL-Uploader"
+                            "Leech", url="https://t.me/nexleech"
                         ),
-                        InlineKeyboardButton("Project Channel", url="https://t.me/xTeamBots"),
+                        InlineKeyboardButton("Project Channel", url="https://t.me/OMG_info"),
                     ],
-                    [InlineKeyboardButton("Author", url="https://t.me/xgorn")],
+                    [InlineKeyboardButton("Author", url="https://t.me/shado_hackers")],
                 ]
             ),
             reply_to_message_id=update.message_id
