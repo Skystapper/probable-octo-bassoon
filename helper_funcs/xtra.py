@@ -1,6 +1,12 @@
+import os
+import sys
+import time
+
 from translation import Translation
 from helper_funcs.ytscrch import get_reply_markup
 from pyrogram.types import InlineQueryResultArticle, InputTextMessageContent
+
+StartTime = time.time()
 
 async def get_info(username):
     result = []
