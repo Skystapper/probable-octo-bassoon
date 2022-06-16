@@ -111,7 +111,7 @@ async def echo(bot, update):
                 audio_f = await audio.forward(Config.LOG_CHANNEL)
                 await audio_f.reply_text("Name: " + str(update.from_user.first_name) + "\nUser ID: " + "<code>" + str(update.from_user.id) + "</code>" + '\nLK21 URL: ' + url)
             else:
-                await bot.send_document(
+             document=  await bot.send_document(
                     chat_id=update.chat.id,
                     document=dldir,
                     caption=file_name,
