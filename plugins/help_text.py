@@ -10,8 +10,7 @@ logger = logging.getLogger(__name__)
 
 import os
 import sqlite3
-from database.database.access_db import db
-from database.database.add_user import AddUserToDatabase
+
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
     from sample_config import Config
