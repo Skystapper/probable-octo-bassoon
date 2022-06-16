@@ -19,7 +19,7 @@ from pyrogram.errors import PeerIdInvalid
 from pyrogram.types import Message, User
 from pyrogram import Client
 
-
+from . import StartTime
 
 
 def get_size(bytes, suffix="B"):
