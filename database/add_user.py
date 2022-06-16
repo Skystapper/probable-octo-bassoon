@@ -1,6 +1,10 @@
 # (c) @AbirHasan2005
 
-from configs import Config
+if bool(os.environ.get("WEBHOOK", False)):
+    from sample_config import Config
+else:
+    from config import Config
+
 from database.access_db import db
 from pyrogram import Client
 from pyrogram.types import Message
