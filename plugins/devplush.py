@@ -7,7 +7,7 @@ import os
 import time
 from datetime import timedelta
 
-timestarted = timedelta(seconds=int(time.time())
+timestarted = timedelta(seconds=int(time.time()))
 
 @Client.on_message(filters.command('uptime'))
 def uptime(client, message):
