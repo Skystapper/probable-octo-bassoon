@@ -13,5 +13,5 @@ timestarted = timedelta(seconds=int(time.time()))
 def uptime(client, message):
     timecheck = timedelta(seconds=int(time.time()))
     uptime = timecheck - timestarted
-    app.send_message(chat_id=message.from_user.id, text=f"__**Uptime :**__ __{uptime}__",
+    Client.send_message(chat_id=message.from_user.id, text=f"__**Uptime :**__ __{uptime}__",
                      parse_mode='md')
