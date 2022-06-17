@@ -68,8 +68,6 @@ async def status(client, message):
     msg = "*Bot information*\n"
     msg += f"Pyrogram Version: `{z}`\n"
     msg += f"Python: `{python_version()}`\n"
-    uptime = get_readable_time((time.time() - StartTime))
-    msg += f"Uptime: `{uptime}`\n\n"
     uname = platform.uname()
     msg += "*System information*\n"
     msg += f"OS: `{uname.system}`\n"
