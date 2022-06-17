@@ -1,4 +1,4 @@
-from pyrogram import Client, filters
+from pyrogram import Client as app , filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import shutil
 import requests
@@ -9,9 +9,9 @@ from datetime import timedelta
 
 timestarted = timedelta(seconds=int(time.time()))
 
-@Client.on_message(filters.command('uptime'))
+@app.on_message(filters.command('uptime'))
 def uptime(client, message):
     timecheck = timedelta(seconds=int(time.time()))
     uptime = timecheck - timestarted
-    Client.send_message(chat_id=message.from_user.id, text=f"__**Uptime :**__ __{uptime}__",
+    app.send_message(chat_id=message.from_user.id, text=f"__**Uptime :**__ __{uptime}__",
                      parse_mode='md')
