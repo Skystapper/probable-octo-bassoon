@@ -64,7 +64,6 @@ def get_readable_time(seconds: int) -> str:
 
 @Client.on_message(filters.command("sysinfo"))
 async def status(client, message):
-    cmd = message.command
     msg = "*Bot information*\n"
     msg += f"Pyrogram Version: `{z}`\n"
     msg += f"Python: `{python_version()}`\n"
