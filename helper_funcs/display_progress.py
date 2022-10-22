@@ -8,9 +8,10 @@ logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-import math
 import os
+import math
 import time
+from typing import List, Union
 
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
@@ -84,9 +85,21 @@ def TimeFormatter(milliseconds: int) -> str:
     minutes, seconds = divmod(seconds, 60)
     hours, minutes = divmod(minutes, 60)
     days, hours = divmod(hours, 24)
-    tmp = ((str(days) + "d, ") if days else "") + \
-        ((str(hours) + "h, ") if hours else "") + \
-        ((str(minutes) + "m, ") if minutes else "") + \
-        ((str(seconds) + "s, ") if seconds else "") + \
-        ((str(milliseconds) + "ms, ") if milliseconds else "")
+    tmp = (((str(days) + "d, ") if days else "") +
+           ((str(hours) + "h, ") if hours else "") +
+           ((str(minutes) + "m, ") if minutes else "") +
+           ((str(seconds) + "s, ") if seconds else "") +
+           ((str(milliseconds) + "ms, ") if milliseconds else ""))
     return tmp[:-2]
+
+
+def timeformat_sec(seconds: int) -> str:
+    minutes, seconds = divmod(int(seconds), 60)
+    hours, minutes = divmod(minutes, 60)
+    days, hours = divmod(hours, 24)
+    tmp = (((str(days) + "d, ") if days else "") +
+           ((str(hours) + "h, ") if hours else "") +
+           ((str(minutes) + "m, ") if minutes else "") +
+           ((str(seconds) + "s, ") if seconds else ""))
+    return tmp[:-2]
+
