@@ -1,16 +1,17 @@
-import subprocess
-import time
 import os
-import requests
+import re
+import shutil
+import time
+from asyncio import sleep
+from sys import executable
 
-import json
-import sys
-import traceback
 import psutil
-import platform
-import pyrogram
+from pyrogram import Client, filters
+from pyrogram.errors import FloodWait, RPCError
+from pyrogram.types import Message
 
-from pyrogram import __version__ as z
+
+from config import Config
 from datetime import datetime
 from platform import python_version, uname
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
@@ -62,28 +63,55 @@ def get_readable_time(seconds: int) -> str:
 
 
 
-@Client.on_message(filters.command("sysinfo"))
-async def status(client, message):
-    msg = "*Bot information*\n"
-    msg += f"Pyrogram Version: `{z}`\n"
-    msg += f"Python: `{python_version()}`\n"
-    uname = platform.uname()
-    msg += "*System information*\n"
-    msg += f"OS: `{uname.system}`\n"
-    msg += f"Version: `{uname.version}`\n"
-    msg += f"Release: `{uname.release}`\n"
-    msg += f"Processor: `{uname.processor}`\n"
-    boot_time_timestamp = psutil.boot_time()
-    bt = datetime.fromtimestamp(boot_time_timestamp)
-    msg += f"Boot time: `{bt.day}/{bt.month}/{bt.year} - {bt.hour}:{bt.minute}:{bt.second}`\n"
-    msg += f"CPU cores: `{psutil.cpu_count(logical=False)} physical, {psutil.cpu_count()} logical`\n"
-    msg += f"CPU freq: `{psutil.cpu_freq().current:.2f}Mhz`\n"
-    msg += f"CPU usage: `{psutil.cpu_percent()}%`\n"
-    ram = psutil.virtual_memory()
-    msg += f"RAM: `{get_size(ram.total)} - {get_size(ram.used)} used ({ram.percent}%)`\n"
-    disk = psutil.disk_usage('/')
-    msg += f"Disk usage: `{get_size(disk.total)} total - {get_size(disk.used)} used ({disk.percent}%)`\n"
-    swap = psutil.swap_memory()
-    msg += f"SWAP: `{get_size(swap.total)} - {get_size(swap.used)} used ({swap.percent}%)`\n"
+@Client.on_message(filters.command("stats"))
+async def send_stats(_, message: Message):
+    stats_msg = await message.reply("`Processing… ⏳`")
+    total, used, free = shutil.disk_usage(".")
+    total = humanbytes(total)
+    used = humanbytes(used)
+    free = humanbytes(free)
+    sent = humanbytes(psutil.net_io_counters().bytes_sent)
+    recv = humanbytes(psutil.net_io_counters().bytes_recv)
+    cpu_usage = psutil.cpu_percent(interval=0.2)
+    ram_usage = psutil.virtual_memory().percent
+    disk_usage = psutil.disk_usage("/").percent
+    uptime = timeformat_sec(time.time() - boottime)
+    total_users = await count_users()
+    total_banned_users = await count_banned_users()
+    if message.from_user.id == Config.BOT_OWNER:
+        await stats_msg.edit(f"""
+**💫 Current bot stats 💫**
+
+**👥 Users :**
+ ↳ **Users in database :** `{total_users}`
+ ↳ **Total banned users :** `{total_banned_users}`
+
+**💾 Disk usage :**
+ ↳ **Total Disk Space :** `{total}`
+ ↳ **Used :** `{used} - {disk_usage}%`
+ ↳ **Free :** `{free}`
+
+**🌐 Network usage :**
+ ↳ **Uploaded :** `{sent}`
+ ↳ **Downloaded :** `{recv}`
+
+**🎛 Hardware usage :**
+ ↳ **CPU usage :** `{cpu_usage}%`
+ ↳ **RAM usage :** `{ram_usage}%`
+ ↳ **Uptime :** `{uptime}`""")
+    else:
+        await stats_msg.edit(f"""
+**💫 Current bot stats 💫**
+
+**💾 Disk usage :**
+ ↳ **Total Disk Space :** `{total}`
+ ↳ **Used :** `{used} - {disk_usage}%`
+ ↳ **Free :** `{free}`
+
+**🎛 Hardware usage :**
+ ↳ **CPU usage :** `{cpu_usage}%`
+ ↳ **RAM usage :** `{ram_usage}%`
+ ↳ **Uptime :** `{uptime}`""")
+
 
     
