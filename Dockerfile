@@ -1,4 +1,6 @@
-### Python Based Docker
+"""
+
+# Python Based Docker
 FROM python:latest
 
 # Installing Packages
@@ -20,4 +22,4 @@ COPY start.sh /start.sh
 
 # Running MessageSearchBot
 CMD ["/bin/bash", "/start.sh"]
-###
+"""
