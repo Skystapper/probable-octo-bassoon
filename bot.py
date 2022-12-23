@@ -3,6 +3,17 @@
 # (c) Shrimadhav U K
 
 # the logging things
+
+from aiohttp import web
+from plugins import web_server
+
+    app = web.AppRunner(await web_server())
+        await app.setup()
+        bind_address = "0.0.0.0"
+        await web.TCPSite(app, bind_address, PORT).start()
+
+    async def stop(self, *args):
+        await super().stop()
 import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
