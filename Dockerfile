@@ -1,5 +1,3 @@
-"""
-
 # Python Based Docker
 FROM python:latest
 
@@ -22,4 +20,4 @@ COPY start.sh /start.sh
 
 # Running MessageSearchBot
 CMD ["/bin/bash", "/start.sh"]
-"""
+
